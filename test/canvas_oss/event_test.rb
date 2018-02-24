@@ -14,39 +14,40 @@
 # knowledge of the CeCILL license and that you accept its terms.
 
 require 'test_helper'
-
-class CanvasOss::EventTest < Minitest::Test
-  def setup
-    @logger = CanvasOss::Event::Logger.new('canvas_test', 0)
-  end
-
-  def test_that_it_has_a_version_number
-    refute_nil ::CanvasOss::Event::VERSION
-  end
-
-  def test_that_the_connect_facility_id_is_valid
-    (0..7).each do |facility|
-      assert CanvasOss::Event::Logger.new('canvas_test', facility)
+module CanvasOss
+  class EventTest < Minitest::Test
+    def setup
+      @logger = CanvasOss::Event::Logger.new('canvas_test', 0)
     end
-    assert_raises(StandardError) { CanvasOss::Event::Logger.new('canvas_test', 8) }
-    assert_raises(StandardError) { CanvasOss::Event::Logger.new('canvas_test', -1) }
-  end
 
-  def test_that_the_connect_program_name_is_valid
-    assert CanvasOss::Event::Logger.new('canvas_test', 0)
-    assert_raises(ArgumentError) { CanvasOss::Event::Logger.new(0, 0) }
-  end
-
-  def test_that_the_log_severity_is_valid
-    %w[alert error warn info debug].each do |severity|
-      assert @logger.log(severity, 'msg ' + severity)
+    def test_that_it_has_a_version_number
+      refute_nil ::CanvasOss::Event::VERSION
     end
-    assert_raises(StandardError) { @logger.log(0, 'msg') }
-    assert_raises(StandardError) { @logger.log('falsevalue', 'msg') }
-  end
 
-  def test_that_the_log_message_is_valid
-    assert @logger.log('alert', 'log message valid')
-    assert_raises(ArgumentError) { @logger.log('alert', 0) }
+    def test_that_the_connect_facility_id_is_valid
+      (0..7).each do |facility|
+        assert CanvasOss::Event::Logger.new('canvas_test', facility)
+      end
+      assert_raises(StandardError) { CanvasOss::Event::Logger.new('canvas_test', 8) }
+      assert_raises(StandardError) { CanvasOss::Event::Logger.new('canvas_test', -1) }
+    end
+
+    def test_that_the_connect_program_name_is_valid
+      assert CanvasOss::Event::Logger.new('canvas_test', 0)
+      assert_raises(ArgumentError) { CanvasOss::Event::Logger.new(0, 0) }
+    end
+
+    def test_that_the_log_severity_is_valid
+      %w[alert error warn info debug].each do |severity|
+        assert @logger.log(severity, 'msg ' + severity)
+      end
+      assert_raises(StandardError) { @logger.log(0, 'msg') }
+      assert_raises(StandardError) { @logger.log('falsevalue', 'msg') }
+    end
+
+    def test_that_the_log_message_is_valid
+      assert @logger.log('alert', 'log message valid')
+      assert_raises(ArgumentError) { @logger.log('alert', 0) }
+    end
   end
 end

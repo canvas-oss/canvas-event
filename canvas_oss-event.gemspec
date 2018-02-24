@@ -21,11 +21,12 @@ Gem::Specification.new do |spec|
   spec.name          = 'canvas_oss-event'
   spec.version       = CanvasOss::Event::VERSION
   spec.authors       = %w['Remy BOISSEZON' 'Valentin PRODHOMME' 'Dylan TROLES' 'Alexandre ZANNI']
-  spec.email         = %w['boissezon.remy@gmail.com' 'valentin@prodhomme.me' 'chill3d@protonmail.com' 'alexandre.zanni@engineer.com']
+  spec.email         = %w[boissezon.remy@gmail.com valentin@prodhomme.me chill3d@protonmail.com alexandre.zanni@engineer.com]
   spec.date          = '2017-11-04'
-  spec.license       = 'CeCILL'
+  spec.license       = 'CECILL-2.1'
+  spec.required_ruby_version = '>= 2.4.0'
 
-  spec.summary       = 'API for Canvas Log system'
+  spec.summary       = 'API for CANVAS Log system'
   spec.description   = 'A little API to send logs to Syslog'
   spec.homepage      = 'https://github.com/canvas-oss/canvas-event'
 
@@ -38,5 +39,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency('minitest', '~> 5.0')
   spec.add_development_dependency('rake', '~> 10.0')
 
-  spec.add_runtime_dependency('syslog-logger', '~> 1.6.8')
+  spec.add_runtime_dependency('syslog-logger', '~> 1.6')
 end
